@@ -1,0 +1,507 @@
+{
+  "title": "Rodrigues & Prado - Homepage",
+  "type": "page",
+  "version": "0.4",
+  "page_settings": {
+    "template": "elementor_header_footer",
+    "hide_title": "yes"
+  },
+  "content": [
+    {
+      "id": "hero-section",
+      "elType": "section",
+      "settings": {
+        "layout": "full_width",
+        "height": "min-height",
+        "custom_height": { "size": 100, "unit": "vh" },
+        "content_position": "middle",
+        "background_background": "gradient",
+        "background_color": "#0F1B33",
+        "background_color_b": "#1B2A4A",
+        "background_gradient_angle": { "size": 135, "unit": "deg" },
+        "background_overlay_background": "classic",
+        "background_overlay_image": {
+          "url": "assets/images/hero-bg.jpg"
+        },
+        "background_overlay_opacity": { "size": 0.15 },
+        "padding": { "top": "0", "bottom": "0", "left": "0", "right": "0", "unit": "px" },
+        "css_classes": "rp-el-hero",
+        "section_id": "inicio"
+      },
+      "elements": [
+        {
+          "id": "hero-column",
+          "elType": "column",
+          "settings": {
+            "content_position": "center",
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "hero-badge",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<span class=\"rp-el-hero-badge\">Rodrigues & Prado Advocacia</span>",
+                "align": "center"
+              }
+            },
+            {
+              "id": "hero-title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Excel\u00eancia Jur\u00eddica com <span style=\"color: #C9A84C;\">Atendimento Humanizado</span>",
+                "size": "h1",
+                "align": "center",
+                "title_color": "#FFFFFF",
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_size": { "size": 3.5, "unit": "rem" },
+                "typography_font_weight": "700"
+              }
+            },
+            {
+              "id": "hero-text",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"color: rgba(255,255,255,0.8); font-size: 1.2rem; max-width: 650px; margin: 0 auto 40px; line-height: 1.8;\">H\u00e1 mais de 15 anos defendendo seus direitos com dedica\u00e7\u00e3o, \u00e9tica e compromisso. Nosso escrit\u00f3rio oferece solu\u00e7\u00f5es jur\u00eddicas personalizadas para cada cliente.</p>",
+                "align": "center"
+              }
+            },
+            {
+              "id": "hero-buttons-group",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Agende sua Consulta",
+                "link": { "url": "https://wa.me/5511999999999?text=Ola!%20Gostaria%20de%20agendar%20uma%20consulta.", "is_external": true, "nofollow": true },
+                "align": "center",
+                "icon": { "value": "fab fa-whatsapp", "library": "fa-brands" },
+                "css_classes": "rp-el-btn-whatsapp"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "areas-section",
+      "elType": "section",
+      "settings": {
+        "layout": "boxed",
+        "padding": { "top": "80", "bottom": "80", "unit": "px" },
+        "section_id": "areas"
+      },
+      "elements": [
+        {
+          "id": "areas-title-col",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "areas-title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "\u00c1reas de Atua\u00e7\u00e3o",
+                "size": "h2",
+                "align": "center",
+                "title_color": "#1B2A4A",
+                "css_classes": "rp-heading-decorated"
+              }
+            },
+            {
+              "id": "areas-subtitle",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"text-align:center; max-width:600px; margin:0 auto;\">Oferecemos assessoria jur\u00eddica completa nas principais \u00e1reas do Direito, sempre com foco na melhor solu\u00e7\u00e3o para nossos clientes.</p>",
+                "align": "center"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "areas-cards-section",
+      "elType": "section",
+      "settings": {
+        "layout": "boxed",
+        "structure": "30",
+        "gap": "extended",
+        "padding": { "bottom": "80", "unit": "px" }
+      },
+      "elements": [
+        {
+          "id": "area-civil",
+          "elType": "column",
+          "settings": { "_column_size": 33 },
+          "elements": [
+            {
+              "id": "area-civil-widget",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": { "value": "fas fa-gavel", "library": "fa-solid" },
+                "title_text": "Direito Civil",
+                "description_text": "Contratos, responsabilidade civil, direito do consumidor, cobran\u00e7as e a\u00e7\u00f5es indenizat\u00f3rias.",
+                "position": "top",
+                "css_classes": "rp-el-area-card"
+              }
+            }
+          ]
+        },
+        {
+          "id": "area-trabalhista",
+          "elType": "column",
+          "settings": { "_column_size": 33 },
+          "elements": [
+            {
+              "id": "area-trabalhista-widget",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": { "value": "fas fa-briefcase", "library": "fa-solid" },
+                "title_text": "Direito Trabalhista",
+                "description_text": "Reclama\u00e7\u00f5es trabalhistas, rescis\u00f5es, acordos, FGTS, f\u00e9rias e direitos do trabalhador.",
+                "position": "top",
+                "css_classes": "rp-el-area-card"
+              }
+            }
+          ]
+        },
+        {
+          "id": "area-criminal",
+          "elType": "column",
+          "settings": { "_column_size": 33 },
+          "elements": [
+            {
+              "id": "area-criminal-widget",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": { "value": "fas fa-shield-alt", "library": "fa-solid" },
+                "title_text": "Direito Criminal",
+                "description_text": "Defesa criminal, habeas corpus, recursos e acompanhamento processual em todas as inst\u00e2ncias.",
+                "position": "top",
+                "css_classes": "rp-el-area-card"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "areas-cards-section-2",
+      "elType": "section",
+      "settings": {
+        "layout": "boxed",
+        "structure": "30",
+        "gap": "extended",
+        "padding": { "bottom": "80", "unit": "px" }
+      },
+      "elements": [
+        {
+          "id": "area-previdenciario",
+          "elType": "column",
+          "settings": { "_column_size": 33 },
+          "elements": [
+            {
+              "id": "area-previdenciario-widget",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": { "value": "fas fa-hand-holding-heart", "library": "fa-solid" },
+                "title_text": "Direito Previdenci\u00e1rio",
+                "description_text": "Aposentadorias, aux\u00edlio-doen\u00e7a, pens\u00e3o por morte, BPC/LOAS e revis\u00f5es de benef\u00edcios.",
+                "position": "top",
+                "css_classes": "rp-el-area-card"
+              }
+            }
+          ]
+        },
+        {
+          "id": "area-empresarial",
+          "elType": "column",
+          "settings": { "_column_size": 33 },
+          "elements": [
+            {
+              "id": "area-empresarial-widget",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": { "value": "fas fa-building", "library": "fa-solid" },
+                "title_text": "Direito Empresarial",
+                "description_text": "Constitui\u00e7\u00e3o de empresas, contratos comerciais, recupera\u00e7\u00e3o judicial e societ\u00e1rio.",
+                "position": "top",
+                "css_classes": "rp-el-area-card"
+              }
+            }
+          ]
+        },
+        {
+          "id": "area-familia",
+          "elType": "column",
+          "settings": { "_column_size": 33 },
+          "elements": [
+            {
+              "id": "area-familia-widget",
+              "elType": "widget",
+              "widgetType": "icon-box",
+              "settings": {
+                "selected_icon": { "value": "fas fa-users", "library": "fa-solid" },
+                "title_text": "Direito de Fam\u00edlia",
+                "description_text": "Div\u00f3rcio, guarda de filhos, pens\u00e3o aliment\u00edcia, invent\u00e1rio e planejamento sucess\u00f3rio.",
+                "position": "top",
+                "css_classes": "rp-el-area-card"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "about-section",
+      "elType": "section",
+      "settings": {
+        "layout": "boxed",
+        "structure": "20",
+        "gap": "extended",
+        "padding": { "top": "80", "bottom": "80", "unit": "px" },
+        "css_classes": "rp-el-section-offwhite",
+        "section_id": "sobre"
+      },
+      "elements": [
+        {
+          "id": "about-image-col",
+          "elType": "column",
+          "settings": { "_column_size": 50 },
+          "elements": [
+            {
+              "id": "about-image",
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": { "url": "assets/images/escritorio.jpg" },
+                "image_size": "large",
+                "image_border_radius": { "top": "8", "right": "8", "bottom": "8", "left": "8", "unit": "px" }
+              }
+            }
+          ]
+        },
+        {
+          "id": "about-content-col",
+          "elType": "column",
+          "settings": { "_column_size": 50, "content_position": "center" },
+          "elements": [
+            {
+              "id": "about-title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Sobre o <span style=\"color: #C9A84C;\">Escrit\u00f3rio</span>",
+                "size": "h2",
+                "title_color": "#1B2A4A"
+              }
+            },
+            {
+              "id": "about-text",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>O escrit\u00f3rio Rodrigues & Prado Advocacia nasceu da uni\u00e3o de profissionais apaixonados pelo Direito e comprometidos com a justi\u00e7a. Com mais de 15 anos de experi\u00eancia, constru\u00edmos uma reputa\u00e7\u00e3o s\u00f3lida baseada na \u00e9tica, transpar\u00eancia e resultados.</p><p>Nossa equipe multidisciplinar est\u00e1 preparada para oferecer solu\u00e7\u00f5es jur\u00eddicas completas e personalizadas, sempre priorizando o atendimento humanizado e a rela\u00e7\u00e3o de confian\u00e7a com nossos clientes.</p>"
+              }
+            },
+            {
+              "id": "about-counters-section",
+              "elType": "section",
+              "isInner": true,
+              "settings": {
+                "structure": "30",
+                "gap": "default",
+                "border_border": "solid",
+                "border_width": { "top": "1", "right": "0", "bottom": "0", "left": "0", "unit": "px" },
+                "border_color": "#F0EDE6",
+                "padding": { "top": "30", "unit": "px" },
+                "margin": { "top": "30", "unit": "px" }
+              },
+              "elements": [
+                {
+                  "id": "counter-1",
+                  "elType": "column",
+                  "settings": { "_column_size": 33 },
+                  "elements": [
+                    {
+                      "id": "counter-years",
+                      "elType": "widget",
+                      "widgetType": "counter",
+                      "settings": {
+                        "starting_number": 0,
+                        "ending_number": 15,
+                        "suffix": "+",
+                        "title": "Anos de Experi\u00eancia",
+                        "css_classes": "rp-el-counter"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "counter-2",
+                  "elType": "column",
+                  "settings": { "_column_size": 33 },
+                  "elements": [
+                    {
+                      "id": "counter-cases",
+                      "elType": "widget",
+                      "widgetType": "counter",
+                      "settings": {
+                        "starting_number": 0,
+                        "ending_number": 2000,
+                        "suffix": "+",
+                        "title": "Casos Atendidos",
+                        "css_classes": "rp-el-counter"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "counter-3",
+                  "elType": "column",
+                  "settings": { "_column_size": 33 },
+                  "elements": [
+                    {
+                      "id": "counter-satisfaction",
+                      "elType": "widget",
+                      "widgetType": "counter",
+                      "settings": {
+                        "starting_number": 0,
+                        "ending_number": 98,
+                        "suffix": "%",
+                        "title": "Clientes Satisfeitos",
+                        "css_classes": "rp-el-counter"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "diferenciais-section",
+      "elType": "section",
+      "settings": {
+        "layout": "boxed",
+        "structure": "40",
+        "gap": "extended",
+        "padding": { "top": "80", "bottom": "80", "unit": "px" },
+        "css_classes": "rp-el-section-dark",
+        "section_id": "diferenciais"
+      },
+      "elements": [
+        {
+          "id": "diff-title-col",
+          "elType": "section",
+          "isInner": true,
+          "settings": { "layout": "boxed" },
+          "elements": [
+            {
+              "id": "diff-title-inner-col",
+              "elType": "column",
+              "settings": { "_column_size": 100 },
+              "elements": [
+                {
+                  "id": "diff-title",
+                  "elType": "widget",
+                  "widgetType": "heading",
+                  "settings": {
+                    "title": "Por que nos escolher?",
+                    "size": "h2",
+                    "align": "center",
+                    "title_color": "#FFFFFF"
+                  }
+                },
+                {
+                  "id": "diff-subtitle",
+                  "elType": "widget",
+                  "widgetType": "text-editor",
+                  "settings": {
+                    "editor": "<p style=\"text-align:center; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto;\">Nossos diferenciais refletem nosso compromisso com a excel\u00eancia e a satisfa\u00e7\u00e3o dos nossos clientes.</p>"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cta-section",
+      "elType": "section",
+      "settings": {
+        "layout": "boxed",
+        "padding": { "top": "100", "bottom": "100", "unit": "px" },
+        "css_classes": "rp-el-cta",
+        "section_id": "cta"
+      },
+      "elements": [
+        {
+          "id": "cta-col",
+          "elType": "column",
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "cta-title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Precisa de <span style=\"color: #C9A84C;\">Assessoria Jur\u00eddica</span>?",
+                "size": "h2",
+                "align": "center",
+                "title_color": "#FFFFFF"
+              }
+            },
+            {
+              "id": "cta-text",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style=\"text-align:center; color:rgba(255,255,255,0.8); font-size:1.1rem;\">Entre em contato conosco e agende uma consulta. Estamos prontos para ajudar voc\u00ea a encontrar a melhor solu\u00e7\u00e3o para o seu caso.</p>"
+              }
+            },
+            {
+              "id": "cta-phone",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "(11) 3000-0000",
+                "size": "h3",
+                "align": "center",
+                "title_color": "#C9A84C",
+                "typography_font_size": { "size": 2, "unit": "rem" },
+                "css_classes": "rp-cta-phone-el"
+              }
+            },
+            {
+              "id": "cta-whatsapp-btn",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "WhatsApp",
+                "link": { "url": "https://wa.me/5511999999999?text=Ola!%20Gostaria%20de%20agendar%20uma%20consulta.", "is_external": true },
+                "align": "center",
+                "icon": { "value": "fab fa-whatsapp", "library": "fa-brands" },
+                "css_classes": "rp-el-btn-whatsapp"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

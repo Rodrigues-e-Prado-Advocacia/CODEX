@@ -1,0 +1,546 @@
+/**
+ * Rodrigues & Prado Advocacia
+ * Estilos customizados para Elementor
+ * Otimizado para performance e compatibilidade
+ *
+ * @package RodriguesPrado
+ */
+
+/* ============================================
+   ELEMENTOR GLOBAL OVERRIDES
+   ============================================ */
+
+/* Corrigir gap padrao do Elementor */
+.elementor-section.elementor-section-boxed > .elementor-container {
+    max-width: 1200px;
+}
+
+/* Remover padding padrao indesejado */
+.elementor-section-wrap > section:first-child > .elementor-container {
+    padding-top: 0;
+}
+
+/* ============================================
+   ELEMENTOR HEADING WIDGET - Custom Styles
+   ============================================ */
+
+.elementor-widget-heading .elementor-heading-title {
+    font-family: var(--rp-font-heading);
+}
+
+.elementor-widget-heading .rp-heading-gold {
+    color: var(--rp-gold);
+}
+
+.elementor-widget-heading .rp-heading-decorated {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.elementor-widget-heading .rp-heading-decorated::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--rp-gold), var(--rp-secondary-light));
+    border-radius: 2px;
+}
+
+/* Centered section title pattern */
+.rp-el-section-title .elementor-widget-heading .elementor-heading-title {
+    text-align: center;
+}
+
+/* ============================================
+   ELEMENTOR ICON BOX - Area de Atuacao Cards
+   ============================================ */
+
+.rp-el-area-card .elementor-icon-box-wrapper {
+    background: var(--rp-white);
+    padding: 40px 30px;
+    border-radius: 8px;
+    border: 1px solid var(--rp-light-gray);
+    transition: var(--rp-transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.rp-el-area-card .elementor-icon-box-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--rp-primary), var(--rp-gold));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.rp-el-area-card .elementor-icon-box-wrapper:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--rp-shadow-lg);
+    border-color: transparent;
+}
+
+.rp-el-area-card .elementor-icon-box-wrapper:hover::before {
+    transform: scaleX(1);
+}
+
+.rp-el-area-card .elementor-icon-box-icon {
+    margin-bottom: 20px;
+}
+
+.rp-el-area-card .elementor-icon-box-icon .elementor-icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(27, 42, 74, 0.05), rgba(201, 168, 76, 0.1));
+    border-radius: 50%;
+    font-size: 28px;
+    color: var(--rp-primary);
+    transition: var(--rp-transition);
+}
+
+.rp-el-area-card .elementor-icon-box-wrapper:hover .elementor-icon {
+    background: linear-gradient(135deg, var(--rp-primary), var(--rp-primary-dark));
+    color: var(--rp-gold);
+    transform: scale(1.1);
+}
+
+.rp-el-area-card .elementor-icon-box-title {
+    font-family: var(--rp-font-heading);
+    font-size: 1.15rem;
+    color: var(--rp-primary);
+    margin-bottom: 12px;
+}
+
+.rp-el-area-card .elementor-icon-box-description {
+    font-size: 0.9rem;
+    color: var(--rp-text-light);
+    line-height: 1.7;
+}
+
+/* ============================================
+   ELEMENTOR IMAGE BOX - Team Cards
+   ============================================ */
+
+.rp-el-team-card .elementor-image-box-wrapper {
+    background: var(--rp-white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--rp-shadow-sm);
+    transition: var(--rp-transition);
+}
+
+.rp-el-team-card .elementor-image-box-wrapper:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--rp-shadow-lg);
+}
+
+.rp-el-team-card .elementor-image-box-img img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.rp-el-team-card .elementor-image-box-wrapper:hover .elementor-image-box-img img {
+    transform: scale(1.05);
+}
+
+.rp-el-team-card .elementor-image-box-content {
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.rp-el-team-card .elementor-image-box-title {
+    font-family: var(--rp-font-heading);
+    color: var(--rp-primary);
+}
+
+/* ============================================
+   ELEMENTOR TESTIMONIAL - Depoimentos
+   ============================================ */
+
+.rp-el-testimonial .elementor-testimonial-wrapper {
+    background: var(--rp-white);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: var(--rp-shadow-sm);
+    position: relative;
+}
+
+.rp-el-testimonial .elementor-testimonial-wrapper::before {
+    content: '\201C';
+    font-family: var(--rp-font-heading);
+    font-size: 6rem;
+    color: var(--rp-gold);
+    opacity: 0.2;
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    line-height: 1;
+}
+
+.rp-el-testimonial .elementor-testimonial-content {
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--rp-text-light);
+    position: relative;
+    z-index: 1;
+}
+
+.rp-el-testimonial .elementor-testimonial-name {
+    font-weight: 600;
+    color: var(--rp-primary);
+}
+
+.rp-el-testimonial .elementor-testimonial-job {
+    color: var(--rp-text-light);
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   ELEMENTOR BUTTON - Custom Styles
+   ============================================ */
+
+.rp-el-btn-primary .elementor-button {
+    background: var(--rp-gold) !important;
+    color: var(--rp-primary-dark) !important;
+    border: 2px solid var(--rp-gold) !important;
+    font-family: var(--rp-font-body);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 14px 36px;
+    border-radius: 4px;
+    transition: var(--rp-transition);
+}
+
+.rp-el-btn-primary .elementor-button:hover {
+    background: transparent !important;
+    color: var(--rp-gold) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(201, 168, 76, 0.3);
+}
+
+.rp-el-btn-whatsapp .elementor-button {
+    background: #25D366 !important;
+    color: var(--rp-white) !important;
+    border: 2px solid #25D366 !important;
+    font-family: var(--rp-font-body);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 14px 36px;
+    border-radius: 4px;
+    transition: var(--rp-transition);
+}
+
+.rp-el-btn-whatsapp .elementor-button:hover {
+    background: #1DA851 !important;
+    border-color: #1DA851 !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+}
+
+.rp-el-btn-outline .elementor-button {
+    background: transparent !important;
+    color: var(--rp-white) !important;
+    border: 2px solid rgba(255, 255, 255, 0.4) !important;
+    font-family: var(--rp-font-body);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 14px 36px;
+    border-radius: 4px;
+    transition: var(--rp-transition);
+}
+
+.rp-el-btn-outline .elementor-button:hover {
+    border-color: var(--rp-gold) !important;
+    color: var(--rp-gold) !important;
+    transform: translateY(-3px);
+}
+
+/* ============================================
+   ELEMENTOR SECTION - Dark (Diferenciais)
+   ============================================ */
+
+.rp-el-section-dark {
+    background: var(--rp-primary) !important;
+}
+
+.rp-el-section-dark .elementor-heading-title {
+    color: var(--rp-white) !important;
+}
+
+.rp-el-section-dark .elementor-widget-text-editor p,
+.rp-el-section-dark .elementor-widget-text-editor {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.rp-el-section-dark .rp-el-diff-card .elementor-icon-box-wrapper {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 35px 30px;
+    transition: var(--rp-transition);
+}
+
+.rp-el-section-dark .rp-el-diff-card .elementor-icon-box-wrapper:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    border-color: rgba(201, 168, 76, 0.3);
+}
+
+.rp-el-section-dark .rp-el-diff-card .elementor-icon {
+    color: var(--rp-gold);
+}
+
+.rp-el-section-dark .rp-el-diff-card .elementor-icon-box-title {
+    color: var(--rp-white);
+}
+
+.rp-el-section-dark .rp-el-diff-card .elementor-icon-box-description {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* ============================================
+   ELEMENTOR SECTION - Off-white Background
+   ============================================ */
+
+.rp-el-section-offwhite {
+    background: var(--rp-off-white) !important;
+}
+
+/* ============================================
+   ELEMENTOR COUNTER WIDGET
+   ============================================ */
+
+.rp-el-counter .elementor-counter-number-wrapper {
+    font-family: var(--rp-font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--rp-gold);
+}
+
+.rp-el-counter .elementor-counter-title {
+    font-size: 0.85rem;
+    color: var(--rp-text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ============================================
+   ELEMENTOR HERO SECTION
+   ============================================ */
+
+.rp-el-hero {
+    min-height: 100vh !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--rp-primary-dark) 0%, var(--rp-primary) 100%) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.rp-el-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to top, var(--rp-white) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.rp-el-hero .elementor-container {
+    position: relative;
+    z-index: 2;
+}
+
+.rp-el-hero-badge {
+    display: inline-block;
+    background: rgba(201, 168, 76, 0.15);
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    color: var(--rp-gold);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding: 8px 24px;
+    border-radius: 30px;
+    margin-bottom: 30px;
+}
+
+/* ============================================
+   ELEMENTOR CTA SECTION
+   ============================================ */
+
+.rp-el-cta {
+    background: linear-gradient(135deg, var(--rp-primary-dark) 0%, var(--rp-primary) 100%) !important;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.rp-el-cta .elementor-heading-title {
+    color: var(--rp-white);
+}
+
+.rp-el-cta .elementor-widget-text-editor p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.rp-el-cta .rp-cta-phone-el {
+    font-family: var(--rp-font-heading);
+    font-size: 2rem;
+    color: var(--rp-gold);
+    font-weight: 700;
+}
+
+/* ============================================
+   COOKIE NOTICE (LGPD)
+   ============================================ */
+
+.rp-cookie-notice {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 27, 51, 0.97);
+    backdrop-filter: blur(10px);
+    z-index: 99999;
+    padding: 20px;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.rp-cookie-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.rp-cookie-notice p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    font-size: 0.9rem;
+    flex: 1;
+}
+
+.rp-cookie-notice a {
+    color: var(--rp-gold);
+    text-decoration: underline;
+}
+
+.rp-cookie-notice .rp-btn {
+    white-space: nowrap;
+    padding: 10px 24px;
+    font-size: 0.85rem;
+}
+
+/* ============================================
+   RESPONSIVE ELEMENTOR ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+    .rp-el-hero {
+        min-height: 80vh !important;
+    }
+
+    .rp-el-hero-badge {
+        font-size: 0.75rem;
+        padding: 6px 16px;
+        letter-spacing: 2px;
+    }
+
+    .rp-cookie-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .rp-el-area-card .elementor-icon-box-wrapper {
+        padding: 30px 20px;
+    }
+
+    .rp-el-testimonial .elementor-testimonial-wrapper {
+        padding: 25px;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY ENHANCEMENTS
+   ============================================ */
+
+:focus-visible {
+    outline: 2px solid var(--rp-gold);
+    outline-offset: 2px;
+}
+
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+/* Skip link */
+.skip-link {
+    background: var(--rp-gold);
+    color: var(--rp-primary-dark);
+    font-weight: 700;
+    left: 50%;
+    padding: 10px 20px;
+    position: absolute;
+    transform: translate(-50%, -100%);
+    transition: transform 0.3s;
+    z-index: 999999;
+}
+
+.skip-link:focus {
+    transform: translate(-50%, 0%);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .rp-animate {
+        opacity: 1;
+        transform: none;
+    }
+
+    .rp-whatsapp-float {
+        animation: none;
+    }
+}

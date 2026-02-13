@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F1B33"/>
+      <stop offset="100%" style="stop-color:#1B2A4A"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <!-- Gold accent line -->
+  <rect x="0" y="440" width="1200" height="3" fill="#C9A84C" opacity="0.6"/>
+  <!-- Logo area -->
+  <text x="600" y="380" font-family="Georgia, serif" font-size="72" fill="#FFFFFF" text-anchor="middle" font-weight="bold">Rodrigues &amp; Prado</text>
+  <text x="600" y="430" font-family="Arial, sans-serif" font-size="24" fill="#C9A84C" text-anchor="middle" letter-spacing="8">ADVOCACIA</text>
+  <!-- Tagline -->
+  <text x="600" y="510" font-family="Arial, sans-serif" font-size="20" fill="rgba(255,255,255,0.7)" text-anchor="middle">Excelencia Juridica com Atendimento Humanizado</text>
+  <!-- Theme info -->
+  <text x="600" y="570" font-family="Arial, sans-serif" font-size="14" fill="rgba(255,255,255,0.4)" text-anchor="middle">Tema Otimizado para Elementor | WordPress Theme</text>
+  <!-- Scale icon -->
+  <g transform="translate(570, 240)" fill="#C9A84C" opacity="0.8">
+    <rect x="25" y="0" width="10" height="60"/>
+    <rect x="0" y="55" width="60" height="5" rx="2"/>
+    <circle cx="5" cy="70" r="15" fill="none" stroke="#C9A84C" stroke-width="2"/>
+    <circle cx="55" cy="70" r="15" fill="none" stroke="#C9A84C" stroke-width="2"/>
+    <line x1="5" y1="57" x2="5" y2="60" stroke="#C9A84C" stroke-width="2"/>
+    <line x1="55" y1="57" x2="55" y2="60" stroke="#C9A84C" stroke-width="2"/>
+  </g>
+</svg>
