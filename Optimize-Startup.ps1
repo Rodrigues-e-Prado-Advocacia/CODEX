@@ -239,7 +239,7 @@ if (-not $PularChrome) {
                 if (Test-Path $caminho) {
                     $tamanho = (Get-ChildItem $caminho -Recurse -ErrorAction SilentlyContinue |
                         Measure-Object -Property Length -Sum -ErrorAction SilentlyContinue).Sum
-                    $tamanhoMB = [math]::Round(($tamanho ?? 0) / 1MB, 1)
+                    $tamanhoMB = [math]::Round((if ($tamanho) { $tamanho } else { 0 }) / 1MB, 1)
                     $totalLiberado += $tamanhoMB
                     Invoke-Acao "[$perfil] Limpando $pasta ($tamanhoMB MB)" {
                         Remove-Item -Path $caminho -Recurse -Force -ErrorAction SilentlyContinue
