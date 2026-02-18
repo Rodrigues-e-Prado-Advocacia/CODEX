@@ -294,7 +294,7 @@ if (-not $PularChrome) {
         "hdokiejnpimakedhajhdlcegeplioahd",  # LastPass
         "gomekmidlodglbbmalcneegieacbdmki",  # Avast
         "hmlcjjclebjnfohgmgdkljbejggenpbc",  # McAfee
-        "cjpalhdlnbpafiamejdnhcphjbkeiagm",  # Google Docs Offline (pode ser pesado)
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm"   # Google Docs Offline (pode ser pesado)
     )
 
     $perfilDefault = "$chromeDataPath\Default\Extensions"
