@@ -1110,8 +1110,8 @@ function Export-HTML {
         r.querySelectorAll('td').forEach(function(td) {
           var orig = td.getAttribute('data-orig') || td.textContent;
           td.setAttribute('data-orig', orig);
-          var re = new RegExp('(' + busca.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-          td.innerHTML = orig.replace(re, '<span class="highlight">$1</span>');
+          var re = new RegExp('(' + busca.replace(/[.*+?^`${}()|[\]\\]/g, '\\`$&') + ')', 'gi');
+          td.innerHTML = orig.replace(re, '<span class="highlight">`$1</span>');
         });
       } else if (!busca) {
         r.querySelectorAll('td').forEach(function(td) {
