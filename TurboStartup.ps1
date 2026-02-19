@@ -379,7 +379,7 @@ $disableServices = @(
     'Browser',         # Computer Browser - rede legada
     'CscService',      # Offline Files - raramente usado
     'Fax',             # Fax
-    'FrameServer',     # Windows Camera - se nao usar camera
+    # 'FrameServer',   # Windows Camera -- MANTIDO: obrigatorio para camera (Teams, Zoom, etc.)
     'icssvc',          # Mobile Hotspot - se nao compartilhar internet
     'lltdsvc',         # Link-Layer Topology
     'MSiSCSI',         # iSCSI - storage enterprise
@@ -397,7 +397,7 @@ $disableServices = @(
     'SDRSVC',          # Windows Backup
     'SEMgrSvc',        # NFC Payments
     'SstpSvc',         # VPN SSTP - se nao usar VPN
-    'stisvc',          # Scanner WIA - se nao usar scanner
+    # 'stisvc',        # Scanner/Camera WIA -- MANTIDO: obrigatorio para cameras WIA e scanners
     'TapiSrv',         # Telephony
     'TrkWks',          # Distributed Link Tracking
     'tzautoupdate',    # Auto Timezone
