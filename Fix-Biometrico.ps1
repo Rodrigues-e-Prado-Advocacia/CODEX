@@ -1,3 +1,4 @@
+#Requires -Version 5.1
 #Requires -RunAsAdministrator
 <#
 .SYNOPSIS
@@ -8,7 +9,8 @@
     Este script restaura o servico para Automatic e reinicia o leitor de impressao digital.
 
 .NOTES
-    Execute como Administrador.
+    Requer: PowerShell 5.1 + Administrador
+    Testado: Windows 10/11
 #>
 
 $ErrorActionPreference = 'Continue'
@@ -55,7 +57,17 @@ if ($svc) {
 
 # 4. Reiniciar driver biometrico para forcar re-enumeracao
 Write-Host "[4/4] Reiniciando dispositivos biometricos..." -ForegroundColor Yellow
-$bioDevices = Get-PnpDevice -Class 'Biometric' -ErrorAction SilentlyContinue
+
+# Tenta via cmdlets PnP (PS 5.1 + Windows 10)
+$pnpCmdAvailable = [bool](Get-Command Get-PnpDevice -ErrorAction SilentlyContinue)
+
+if ($pnpCmdAvailable) {
+    $bioDevices = Get-PnpDevice -Class 'Biometric' -ErrorAction SilentlyContinue
+} else {
+    # Fallback: WMI (disponivel em qualquer versao do PS 5.1)
+    $bioDevices = $null
+}
+
 if ($bioDevices) {
     foreach ($dev in $bioDevices) {
         Write-Host "      Dispositivo: $($dev.FriendlyName)" -ForegroundColor White
@@ -63,14 +75,30 @@ if ($bioDevices) {
             Disable-PnpDevice -InstanceId $dev.InstanceId -Confirm:$false -ErrorAction Stop
             Start-Sleep -Seconds 1
             Enable-PnpDevice -InstanceId $dev.InstanceId -Confirm:$false -ErrorAction Stop
-            Write-Host "      Reiniciado  OK" -ForegroundColor Green
+            Write-Host "      Reiniciado (PnP)  OK" -ForegroundColor Green
         } catch {
             Write-Host "      AVISO: $_" -ForegroundColor Yellow
         }
     }
 } else {
-    Write-Host "      Nenhum dispositivo biometrico PnP detectado." -ForegroundColor Yellow
-    Write-Host "      Verifique o Gerenciador de Dispositivos." -ForegroundColor Yellow
+    # Fallback: localiza via WMI e reinicia com pnputil
+    $wmiDevices = Get-WmiObject -Class Win32_PnPEntity -ErrorAction SilentlyContinue |
+        Where-Object { $_.PNPClass -eq 'Biometric' -or $_.Name -match 'finger|biometric' }
+
+    if ($wmiDevices) {
+        foreach ($dev in $wmiDevices) {
+            Write-Host "      Dispositivo (WMI): $($dev.Name)" -ForegroundColor White
+            # Desabilita e reabilita via pnputil (disponivel Windows 10+)
+            $hwId = $dev.DeviceID
+            pnputil /disable-device "$hwId" 2>&1 | Out-Null
+            Start-Sleep -Seconds 1
+            pnputil /enable-device "$hwId" 2>&1 | Out-Null
+            Write-Host "      Reiniciado (pnputil)  OK" -ForegroundColor Green
+        }
+    } else {
+        Write-Host "      Nenhum dispositivo biometrico detectado." -ForegroundColor Yellow
+        Write-Host "      Verifique o Gerenciador de Dispositivos." -ForegroundColor Yellow
+    }
 }
 
 Write-Host ""
