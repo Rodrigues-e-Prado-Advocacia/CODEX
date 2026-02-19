@@ -391,9 +391,9 @@ $disableServices = @(
     'RemoteRegistry',  # Remote Registry - seguranca
     'RetailDemo',      # Retail Demo
     'RpcLocator',      # RPC Locator - legado
-    'SCardSvr',        # Smart Card
-    'ScDeviceEnum',    # Smart Card Device Enum
-    'SCPolicySvc',     # Smart Card Removal
+    # 'SCardSvr',      # Smart Card         -- MANTIDO: obrigatorio para tokens USB de assinatura
+    # 'ScDeviceEnum',  # Smart Card Device  -- MANTIDO: obrigatorio para tokens USB de assinatura
+    # 'SCPolicySvc',   # Smart Card Policy  -- MANTIDO: obrigatorio para tokens USB de assinatura
     'SDRSVC',          # Windows Backup
     'SEMgrSvc',        # NFC Payments
     'SstpSvc',         # VPN SSTP - se nao usar VPN
