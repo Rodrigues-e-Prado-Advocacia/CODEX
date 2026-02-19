@@ -162,6 +162,12 @@ function Write-Aviso {
     Write-Host "       !   $Texto" -ForegroundColor Yellow
 }
 
+
+function Nvl {
+    param($Valor, $Padrao = "")
+    if ($null -ne $Valor -and $Valor -ne "") { return $Valor } else { return $Padrao }
+}
+
 function Format-Bytes {
     param([long]$Bytes)
     if ($Bytes -ge 1GB) { return "{0:N2} GB" -f ($Bytes / 1GB) }
@@ -276,18 +282,18 @@ function Scan-Registro {
             Adicionar-Item `
                 -Categoria       "Registro" `
                 -Nome            $nome `
-                -Versao          ($props.DisplayVersion ?? "") `
-                -Publicador      ($props.Publisher ?? "") `
+                -Versao          (Nvl $props.DisplayVersion) `
+                -Publicador      (Nvl $props.Publisher) `
                 -DataInstalacao  $dataInstall `
                 -CaminhoInstall  $caminho `
                 -Tamanho         $tamanho `
                 -Arquitetura     $fonte.Arq `
                 -GUID            ($subchave.PSChildName) `
-                -Descricao       ($props.Comments ?? "") `
+                -Descricao       (Nvl $props.Comments) `
                 -FonteDetalhe    $fonte.Caminho `
                 -Status          $(if ($props.SystemComponent -eq 1) { "Componente Sistema" } else { "Aplicativo" }) `
                 -Extra1Label     "UninstallString" `
-                -Extra1Valor     ($props.UninstallString ?? "")
+                -Extra1Valor     (Nvl $props.UninstallString)
 
             $count++
         }
@@ -314,13 +320,13 @@ function Scan-UWP {
         $descricao = ""
         $publicador = $app.Publisher
         if ($manifest) {
-            $descricao  = $manifest.Package.Properties.Description ?? ""
+            $descricao  = (Nvl $manifest.Package.Properties.Description)
             if ([string]::IsNullOrEmpty($publicador)) {
-                $publicador = $manifest.Package.Properties.PublisherDisplayName ?? ""
+                $publicador = (Nvl $manifest.Package.Properties.PublisherDisplayName)
             }
         }
 
-        $caminho = $app.InstallLocation ?? ""
+        $caminho = (Nvl $app.InstallLocation)
 
         $tipo = switch -Wildcard ($app.PackageFullName) {
             "*Framework*"   { "Framework" }
@@ -344,7 +350,7 @@ function Scan-UWP {
             -FonteDetalhe    "Get-AppxPackage" `
             -Status          $(if ($app.IsFramework) { "Framework" } else { $tipo }) `
             -Extra1Label     "PackageFamilyName" `
-            -Extra1Valor     ($app.PackageFamilyName ?? "")
+            -Extra1Valor     (Nvl $app.PackageFamilyName)
 
         $count++
     }
@@ -377,7 +383,7 @@ function Scan-Features {
             -Tamanho         "" `
             -Arquitetura     "" `
             -GUID            "" `
-            -Descricao       ($f.Description ?? "") `
+            -Descricao       (Nvl $f.Description) `
             -FonteDetalhe    "Get-WindowsOptionalFeature" `
             -Status          ($f.State.ToString()) `
             -Extra1Label     "Estado" `
@@ -451,8 +457,8 @@ function Scan-Servicos {
         $descricao = $svc.DisplayName
 
         if ($wmi) {
-            $caminho  = $wmi.PathName ?? ""
-            $descricao = $wmi.Description ?? $svc.DisplayName
+            $caminho  = (Nvl $wmi.PathName)
+            $descricao = (Nvl $wmi.Description $svc.DisplayName)
         }
 
         # Tentar obter publicador do executavel
@@ -461,8 +467,9 @@ function Scan-Servicos {
         elseif ($caminho -match '^(\S+\.exe)') { $exePath = $Matches[1] }
 
         if ($exePath -and (Test-Path $exePath -ErrorAction SilentlyContinue)) {
-            $vi = (Get-Item $exePath -ErrorAction SilentlyContinue).VersionInfo
-            if ($vi) { $publicador = $vi.CompanyName ?? "" }
+            $_itemSvc = Get-Item $exePath -ErrorAction SilentlyContinue
+            $vi = if ($_itemSvc) { $_itemSvc.VersionInfo } else { $null }
+            if ($vi) { $publicador = (Nvl $vi.CompanyName) }
         }
 
         Adicionar-Item `
@@ -519,8 +526,8 @@ function Scan-Executaveis {
             $vi = $exePrincipal.VersionInfo
 
             $nome      = if ($vi.ProductName) { $vi.ProductName } else { $pasta.Name }
-            $versao    = if ($vi.ProductVersion) { $vi.ProductVersion } else { $vi.FileVersion ?? "" }
-            $publicador = $vi.CompanyName ?? ""
+            $versao    = if ($vi.ProductVersion) { $vi.ProductVersion } else { (Nvl $vi.FileVersion) }
+            $publicador = (Nvl $vi.CompanyName)
             $tamanho   = Get-TamanhoDir -Caminho $pasta.FullName
 
             # Verificar se ja foi mapeado pelo registro (evitar duplicata exata)
@@ -542,7 +549,7 @@ function Scan-Executaveis {
                 -Tamanho         $tamanho `
                 -Arquitetura     "" `
                 -GUID            "" `
-                -Descricao       ($vi.FileDescription ?? "") `
+                -Descricao       ((Nvl $vi.FileDescription)) `
                 -FonteDetalhe    $dir `
                 -Status          "Detectado (sem desinstalador)" `
                 -Extra1Label     "Executavel" `
@@ -560,7 +567,8 @@ function Scan-Executaveis {
 function Scan-Chocolatey {
     Write-Etapa "9" "Pacotes Chocolatey"
 
-    $chocoPath = (Get-Command choco -ErrorAction SilentlyContinue)?.Source
+    $chocoCmd = Get-Command choco -ErrorAction SilentlyContinue
+    $chocoPath = if ($chocoCmd) { $chocoCmd.Source } else { "" }
     if (-not $chocoPath) {
         # Tentar caminho padrao
         $chocoPath = "$env:ChocolateyInstall\bin\choco.exe"
@@ -615,7 +623,8 @@ function Scan-Chocolatey {
 function Scan-Winget {
     Write-Etapa "10" "Pacotes Winget (Windows Package Manager)"
 
-    $wingetPath = (Get-Command winget -ErrorAction SilentlyContinue)?.Source
+    $wingetCmd = Get-Command winget -ErrorAction SilentlyContinue
+    $wingetPath = if ($wingetCmd) { $wingetCmd.Source } else { "" }
     if (-not $wingetPath) {
         Write-Aviso "Winget nao encontrado — ignorado."
         return
@@ -637,7 +646,7 @@ function Scan-Winget {
                         Adicionar-Item `
                             -Categoria       "Winget" `
                             -Nome            ($pkg.PackageIdentifier) `
-                            -Versao          ($pkg.Version ?? "") `
+                            -Versao          (Nvl $pkg.Version) `
                             -Publicador      "" `
                             -DataInstalacao  "" `
                             -CaminhoInstall  "" `
@@ -648,7 +657,7 @@ function Scan-Winget {
                             -FonteDetalhe    "winget export" `
                             -Status          "Instalado" `
                             -Extra1Label     "SourceName" `
-                            -Extra1Valor     ($fonte.SourceDetails.Name ?? "")
+                            -Extra1Valor     (Nvl $fonte.SourceDetails.Name)
 
                         $count++
                     }
@@ -667,18 +676,18 @@ function Scan-Winget {
                         Adicionar-Item `
                             -Categoria       "Winget" `
                             -Nome            ($partes[0].Trim()) `
-                            -Versao          ($partes[2]?.Trim() ?? "") `
+                            -Versao          (if ($partes.Count -gt 2 -and $partes[2] -ne $null) { $partes[2].Trim() } else { "" }) `
                             -Publicador      "" `
                             -DataInstalacao  "" `
                             -CaminhoInstall  "" `
                             -Tamanho         "" `
                             -Arquitetura     "" `
-                            -GUID            ($partes[1]?.Trim() ?? "") `
+                            -GUID            (if ($partes.Count -gt 1 -and $partes[1] -ne $null) { $partes[1].Trim() } else { "" }) `
                             -Descricao       "" `
                             -FonteDetalhe    "winget list" `
                             -Status          "Instalado" `
                             -Extra1Label     "ID" `
-                            -Extra1Valor     ($partes[1]?.Trim() ?? "")
+                            -Extra1Valor     (if ($partes.Count -gt 1 -and $partes[1] -ne $null) { $partes[1].Trim() } else { "" })
 
                         $count++
                     }
@@ -726,10 +735,11 @@ function Scan-Startup {
             elseif ($exePath -match '^([^\s]+\.exe)') { $exeReal = $Matches[1] }
 
             if ($exeReal -and (Test-Path $exeReal -ErrorAction SilentlyContinue)) {
-                $vi = (Get-Item $exeReal -ErrorAction SilentlyContinue)?.VersionInfo
+                $_itemExe = Get-Item $exeReal -ErrorAction SilentlyContinue
+                $vi = if ($_itemExe) { $_itemExe.VersionInfo } else { $null }
                 if ($vi) {
-                    $publicador = $vi.CompanyName ?? ""
-                    $versao     = $vi.ProductVersion ?? $vi.FileVersion ?? ""
+                    $publicador = (Nvl $vi.CompanyName)
+                    $versao     = (Nvl $vi.ProductVersion (Nvl $vi.FileVersion))
                 }
             }
 
@@ -768,8 +778,8 @@ function Scan-Startup {
             if ($item.Extension -eq ".lnk") {
                 try {
                     $shell   = New-Object -ComObject WScript.Shell -ErrorAction SilentlyContinue
-                    $atalho  = $shell?.CreateShortcut($item.FullName)
-                    $alvo    = $atalho?.TargetPath ?? ""
+                    $atalho  = if ($shell) { $shell.CreateShortcut($item.FullName) } else { $null }
+                    $alvo    = if ($atalho) { $atalho.TargetPath } else { "" }
                 } catch {}
             } else {
                 $alvo = $item.FullName
@@ -777,8 +787,9 @@ function Scan-Startup {
 
             $publicador = ""
             if ($alvo -and (Test-Path $alvo -ErrorAction SilentlyContinue)) {
-                $vi = (Get-Item $alvo -ErrorAction SilentlyContinue)?.VersionInfo
-                if ($vi) { $publicador = $vi.CompanyName ?? "" }
+                $_itemAlvo = Get-Item $alvo -ErrorAction SilentlyContinue
+                $vi = if ($_itemAlvo) { $_itemAlvo.VersionInfo } else { $null }
+                if ($vi) { $publicador = (Nvl $vi.CompanyName) }
             }
 
             Adicionar-Item `
