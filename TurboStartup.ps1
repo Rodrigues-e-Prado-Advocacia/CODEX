@@ -316,7 +316,6 @@ $delayedServices = @(
     'upnphost',               # UPnP Device Host
     'vds',                    # Virtual Disk
     'W32tm',                  # Windows Time
-    'WbioSrvc',               # Windows Biometric
     'Wcmsvc',                 # Windows Connection Manager
     'WdiServiceHost',         # Diagnostic Service Host
     'WdiSystemHost',          # Diagnostic System Host
@@ -405,7 +404,6 @@ $disableServices = @(
     'UmRdpService',    # Remote Desktop
     'upnphost',        # UPnP
     'vds',             # Virtual Disk
-    'WbioSrvc',        # Biometrico - desativar se nao usar impressao digital
     'WiaRpc',          # Scanner
     'WinRM',           # Remote Management
     'WMPNetworkSvc',   # WMP Network Sharing
