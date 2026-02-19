@@ -339,7 +339,7 @@ $criticalServices = @(
     'AudioEndpointBuilder', 'Audiosrv', 'BFE', 'BrokerInfrastructure',
     'ClipSVC', 'CoreMessagingRegistrar', 'CryptSvc', 'DcomLaunch',
     'DeviceAssociationService', 'Dhcp', 'Dnscache', 'DusmSvc',
-    'EventLog', 'EventSystem', 'FontCache', 'gpsvc', 'KeyIso',
+    'EventLog', 'EventSystem', 'fdPHost', 'FDResPub', 'FontCache', 'gpsvc', 'KeyIso',
     'LSM', 'MpsSvc', 'NcaSvc', 'netprofm', 'NlaSvc', 'nsi',
     'PlugPlay', 'Power', 'ProfSvc', 'RpcEptMapper', 'RpcSs',
     'Schedule', 'SecurityHealthService', 'SENS', 'ShellHWDetection',
@@ -402,7 +402,7 @@ $disableServices = @(
     'TrkWks',          # Distributed Link Tracking
     'tzautoupdate',    # Auto Timezone
     'UmRdpService',    # Remote Desktop
-    'upnphost',        # UPnP
+    # 'upnphost',      # UPnP -- MANTIDO: obrigatorio para impressoras de rede
     'vds',             # Virtual Disk
     'WiaRpc',          # Scanner
     'WinRM',           # Remote Management
