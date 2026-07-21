@@ -7,6 +7,30 @@ Guia + ferramenta de diagnóstico para forçar a renegociação do IP público
 > reconexão da sessão WAN; se você recebe um IP novo ou o mesmo depende da
 > política da operadora (tempo de *lease*, vínculo por MAC, CGNAT).
 
+## Já quer trocar o IP? (caso confirmado: ZTE F6600P, fibra, sem CGNAT)
+
+Se o seu roteador expõe UPnP/TR-064 (o ZTE F6600P expõe), use um dos scripts
+prontos — eles descobrem o roteador sozinhos, derrubam a sessão WAN
+(`ForceTermination`) e verificam o IP novo:
+
+- **Windows, sem instalar nada** — `trocar_ip.ps1` (PowerShell):
+  ```powershell
+  .\trocar_ip.ps1            # mostra o IP e pede confirmação
+  .\trocar_ip.ps1 -Sim       # troca direto
+  .\trocar_ip.ps1 -Mostrar   # só mostra o IP atual
+  ```
+- **Python (multiplataforma)** — `trocar_ip.py`:
+  ```bash
+  python3 trocar_ip.py           # mostra e pede confirmação
+  python3 trocar_ip.py --sim     # troca direto
+  python3 trocar_ip.py --mostrar # só mostra o IP atual
+  ```
+
+Ambos **derrubam a internet por alguns segundos** enquanto o roteador
+reconecta. Se o roteador recusar o `ForceTermination` (alguns só permitem
+leitura via UPnP), o caminho é o painel `http://192.168.1.1` → Internet/WAN →
+Desconectar e Conectar.
+
 ## Como usar
 
 Rode **na máquina que está na sua rede** (seu PC/notebook ligado no roteador) —
